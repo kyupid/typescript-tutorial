@@ -1,48 +1,59 @@
-// arrays
-let names = ['luigi', 'mario', 'yoshi'];
+// explict types
+let character: string; // 변수 초기화
+let age: number;
+let isLoggedIn: boolean;
 
-names.push('toad');
-// js에서는 다른타입을 push할수있다
-// names.push(3);
-// 이것도 된다
-// names[0] = 3;
-// 타입스크립트에서는 not assignable 이라고 뜬다
+// age = 'ligi'; // 에러가난다.
+age = 30; // 타입같으니까 ㄱㅊ
 
-// names = 'hello'; // 이렇게 변수의 타입을 변경하는것도 안됨
+// isLogged = 25; // 에러가난다.
+isLoggedIn = true;
 
-let numbers = [10, 20, 30, 40];
+//  arrays
+// let ninjas: string[]; // In future It's gonna be always a string array
 
-numbers.push(25);
+// ninjas = [10, 20]; // this gonna be not allowed
 
-//also not working
-// numbers.push('shaun');
-// numbers[1] = 'shaun';
+// ninjas.push('shaun'); // 여기서 에러가 안나는데 컴파일하고 실행시키면?
+// 브라우저에서 sandbox.js:12 Uncaught TypeError: Cannot read properties of undefined (reading 'push')
+//     at sandbox.js:12
+// 위와 같은 에러가난다.
 
-// 근데 애초에 이렇게 숫자랑 스트링이랑 섞여있는건 된다.
-let mixed = ['ken', 4, 'chun-li', 8, 9];
-mixed.push('ryu');
-mixed.push(10);
-mixed[0] = 3;
+// 왜냐면 init한게 아니라 string[] 이라는 타입만 지정해줬기 때문이다.
+// let ninjas: string[] = []; 이렇게 배열을 초기화해줘야한다.
+// primitive 변수랑 비교해서 인지해둬야한다 그래서.
 
-// 그니까 애초에 타입하나로 선언되어있는 배열은 그해당하는 타입하나로만 가능
+let ninjas: string[] = [];
+ninjas.push('ky'); // 에러 없음
+
+// 만약에 mixed type으로 배열을 선언하고 싶다면 ?
+// that is union types !
+
+// union types
+let mixed: (string|number)[] = []; // 이렇게 선언함ㄴ 된다.
+mixed.push('hello');
+mixed.push(20);
+// mixed.push(false); // 에러가난다.
+console.log(mixed);
+
+// 또 유니언 타입은 배열뿐만아니라 그냥 타입으로 지정할수도있다
+let uid: string|number;
+uid = 123;
+uid = '123';
 
 // objects
-let ninja = {
-    name: 'mario',
-    belt: 'black',
-    age: 30
-};
+let ninjaOne: object;
+ninjaOne = { name: 'yoshi', age: 30};
+// ninjaOne = 'hello'; // This wouldn't work
+ninjaOne = []; // 이건 동작한다 because an array is actually a kind of object
 
-ninja.age = 40;
-ninja.name = 'ryu';
-// ninja.age = '30'; // 위에서 배열에서 그런거처럼 오브젝트에서도 이렇게 에러가난다 당연히
-// ninja.skills = ['fighting', 'sneaking']; // 프로퍼티를 추가할수도없다 타입스크립트에서는
+// 그래서 아래 ninjaTwo 처럼 정한다
+let ninjaTwo: {
+    name: string,
+    age: number,
+    beltColor: string
+}
 
-// ninja = ''; // 변수타입변경불가능
-ninja = {
-  name: 'yoshi',
-  belt: 'orange',
-  age: 40
-    // skills: [] // 선언불가능
-}; // 객체를 다시 선언할때는 처음에 선언한 그 프로퍼티를 가지고 선언ㅇ해야함
-
+ninjaTwo = {
+    name: 'mario', age: 20, beltColor: 'black'
+} // 처음선언했을때 가지는 속성을 그대로 가지고 변수에 객체를 할당해야한다
