@@ -1,1 +1,2 @@
-// ts file outside the ./src folder
+// dkaopdkapokdopas
+console.log("daskodkaso");
