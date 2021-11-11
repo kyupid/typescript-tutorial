@@ -71,3 +71,35 @@ Type VS Interface -> 좋은 코드는 확장성이 좋은 것이다. 웬만하�
 참고할수있는건 [여기](https://dev.to/toluagboola/type-aliases-vs-interfaces-in-typescript-3ggg)에 따르면 객체는 interface로 만들고 primitive나 union, intersection 타입 등은 type으로 하는 편이라고 한다.
 
 그리고 그런 타입을 다른 타입이나 인터페이스에 넣을수있다는 것도 참고하자
+
+
+### Union Type And Intersection Type
+
+```ts
+interface Developer {
+    name: string;
+    skill: string;
+}
+
+interface Person {
+    name: string;
+    age: number;
+}
+```
+```ts
+function askSomeone(someone: Developer | Person) { // Union type
+    someone.name; // 공통된 부분만 접근가능
+}
+
+askSomeone({ name: '디벨로퍼', skill: '웹 개발' });
+askSomeone({ name: '캡틴', age: 100 }); // 넣을 때는 Developer 나 Person 타입으로 넣을수있지
+```
+```ts 
+function askSomeone(someone: Developer & Person) { // Intersection type 두 타입다 가지니까 전부 꺼낼수있음
+    someone.name;
+    someone.skill;
+    someone.age;
+}
+```
+
+### Enum
