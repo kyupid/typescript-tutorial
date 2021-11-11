@@ -103,3 +103,28 @@ function askSomeone(someone: Developer & Person) { // Intersection type 두 타�
 ```
 
 ### Enum
+```ts
+enum Shoes {
+    Nike = '나이키',
+    Adidas = '아디다스',
+    Puma = '퓨마'
+}
+
+var myShoes = Shoes.Nike;
+console.log(myShoes); // 나이키라고 지정안하면 0 숫자로 나옴 
+
+// 예제
+enum Answer {
+    Yes = 'Y',
+    No = 'N'
+}
+
+function askQuestion(answer: Answer) {
+    if (answer === Answer.Yes) {
+        console.log('right');
+    }
+    if (answer === Answer.No) {
+        console.log('no');
+    }
+}
+```
